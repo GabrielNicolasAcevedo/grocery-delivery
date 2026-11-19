@@ -30,7 +30,8 @@ const Banner = () => {
                     </div>
                     <button
                         onClick={dismissBanner}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-full" >
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-full"
+                        aria-label="Cerrar banner" >
                         <XIcon className="size-3.5" />
                     </button>
                 </div>
