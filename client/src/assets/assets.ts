@@ -1,4 +1,4 @@
-import { TruckIcon, LeafIcon, ClockIcon, ShieldCheckIcon, MapPinIcon, PhoneIcon, MailIcon } from "lucide-react";
+import { TruckIcon, ShieldCheckIcon, MapPinIcon, PhoneIcon, MailIcon, CalendarDaysIcon, ShoppingBagIcon } from "lucide-react";
 import { SiFacebook, SiX, SiInstagram } from "@icons-pack/react-simple-icons";
 import hero_bg from "./hero_bg.jpeg";
 import delivery_truck from "./delivery_truck.svg";
@@ -35,10 +35,10 @@ export const heroSectionData = {
     description: "¡Vos elegís, nosotros te lo llevamos! Hacé tu pedido online y recibilo en tu puerta.",
     hero_image: hero_bg,
     hero_features: [
-        { icon: TruckIcon, title: "Free Delivery", desc: "Orders over $20" },
-        { icon: LeafIcon, title: "100% Organic", desc: "Certified products" },
-        { icon: ClockIcon, title: "Same Day", desc: "Express delivery" },
-        { icon: ShieldCheckIcon, title: "Secure Pay", desc: "Safe checkout" },
+        { icon: TruckIcon, title: "Envío gratis", desc: "En compras superiores a $20.000" },
+        { icon: CalendarDaysIcon, title: "Entregas programadas", desc: "Martes y jueves" },
+        { icon: ShoppingBagIcon, title: "Comprá online", desc: "Hacé tu pedido desde casa" },
+        { icon: ShieldCheckIcon, title: "Pago seguro", desc: "Pagá fácil y seguro con Mercado Pago" },
     ],
 };
 
