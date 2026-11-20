@@ -4,11 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-    const user: any = {
-        name: "John Doe",
-        email: "john@example.com",
-        isAdmin: true
-    };
+    const user: any = null;
     const { cartCount, setIsCartOpen } = {
         cartCount: 5,
         setIsCartOpen: (_data: any) => { },
@@ -16,6 +12,20 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [userMenuOpen, setUserMenuOpen] = useState(false);
     const navigate = useNavigate()
+
+    const handleSearch = (e: React.SubmitEvent) => {
+        e.preventDefault();
+
+        if (searchQuery.trim()) {
+            navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
+            setSearchQuery("")
+        }
+    };
+
+    const handleLogout = () => {
+        setUserMenuOpen(false);
+        navigate('/')
+    }
 
 
     return (
@@ -33,8 +43,9 @@ const Navbar = () => {
                         <Link to="/products">Productos</Link>
                         <Link to="/deals" className="text-app-orange">Ofertas</Link>
                     </div>
+
                     {/** Search */}
-                    <form className="hidden sm:flex flex-1 max-w-sm text-xs sm:text-sm">
+                    <form onSubmit={handleSearch} className="hidden sm:flex flex-1 max-w-sm text-xs sm:text-sm">
                         <div className="relative w-full" >
                             <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 size-4 text-zinc-500" />
                             <input
@@ -63,7 +74,7 @@ const Navbar = () => {
                         {/** User */}
                         <div className="relative" >
                             {user ? (
-                                <button onClick={()=> setUserMenuOpen(!userMenuOpen)} className="flex items-center gap-2 p-2" >
+                                <button onClick={() => setUserMenuOpen(prevUserMenuOpen => !prevUserMenuOpen)} className="flex items-center gap-2 p-2" >
                                     <div className="size-7 rounded-full bg-green-950 text-white flex-center " >
                                         {user.name.charAt(0).toUpperCase()}
                                     </div>
@@ -99,7 +110,7 @@ const Navbar = () => {
                                             </div>
                                         )}
                                         <div onClick={() => setUserMenuOpen(false)}>
-                                            {user &&
+                                            {!user &&
                                                 <Link to="/login" className="dropdown-link" >
                                                     <UserIcon size={16} />
                                                     Ingresar
@@ -129,12 +140,12 @@ const Navbar = () => {
                                             {user?.isAdmin && (
                                                 <Link to="/admin/products" className="dropdown-link" >
                                                     <ShieldIcon className="text-app-orange-dark" size={16} />
-                                                    <span className="text-app-orange-dark" >Admin Panel</span>
+                                                    <span className="text-app-orange-dark" >Admin</span>
                                                 </Link>
                                             )}
-                                            {user &&  (
+                                            {user && (
                                                 <div className="border-t border-app-border pt-1" >
-                                                    <button className="flex items-center gap-3 px-4 py-2.5 text-sm text-app-error hover:bg-red-50 w-full transition-colors" >
+                                                    <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-2.5 text-sm text-app-error hover:bg-red-50 w-full transition-colors" >
                                                         <LogOutIcon size={16} />
                                                         Cerrar sesion
                                                     </button>
